@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+header
+{
+    margin: 20px 10px 40px 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 60px;
+    text-shadow: 3px 3px 8px gray;
+    text-align: center;
+    color: royalblue;
+}
+body
+{
+    color: black;
+    font-family: '맑은 고딕', '돋움', '고딕';
+}
+div
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: center;
+}
+ul
+{
+    list-style: none;
+    text-align: left;
+    background-color: #FdF2EE;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#sect
+{
+    background-color: #FdF2EE;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+}
+a
+{
+    text-decoration: underline;
+    color: #0000d0;
+}
+table
+{
+    border-collapse: collapse;
+    width: 100%;
+    background-color: aquamarine;
+}
+th
+{
+    border: 1px solid lightgray;
+    padding: 5px;
+    width: 30%;
+    font-size: 25px;
+    font-family: Courier;
+}
+td
+{
+    border: 1px solid lightgray;
+    padding: 5px;
+    width: 70%;
+    font-size: 25px;
+    font-family: courier;
+}
+#form
+{
+    font-size: 20px;
+    font-family:'Times New Roman', Times, serif;
+}
+#box
+{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
