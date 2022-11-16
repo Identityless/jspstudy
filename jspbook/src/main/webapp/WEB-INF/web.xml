@@ -22,4 +22,8 @@
   	<param-name>encoding</param-name>
   	<param-value>utf-8</param-value>
   </context-param>
+   <context-param>
+  	<param-name>profile</param-name>
+  	<param-value>C:/kwjdev/my.conf</param-value>
+  </context-param>
 </web-app>
