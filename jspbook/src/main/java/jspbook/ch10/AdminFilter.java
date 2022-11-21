@@ -38,9 +38,12 @@ public class AdminFilter extends HttpFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		System.out.println("AdminFilter : Start " );
+		
 		p = (Properties) request.getServletContext().getAttribute("prop");
 		p.put("adminId", "admin");
+		
 		request.setAttribute("tel", "010-1234-1234");
+		
 		// 필터처리 종료, 다음 필터 실행
 		chain.doFilter(request, response);
 	}
