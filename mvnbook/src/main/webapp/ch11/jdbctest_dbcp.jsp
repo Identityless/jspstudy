@@ -1,20 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*"%>
+    pageEncoding="UTF-8" import="java.sql.*, javax.naming.*, javax.sql.*"%>
 <!DOCTYPE html>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	String jdbc_driver = "com.mysql.cj.jdbc.Driver";
-	String jdbc_url ="jdbc:mysql://localhost:3307/jspdb?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
+	//String jdbc_driver = "com.mysql.cj.jdbc.Driver";
+	//String jdbc_url ="jdbc:mysql://localhost:3307/jspdb?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
 	try {
-		Class.forName(jdbc_driver);
-		conn = DriverManager.getConnection(jdbc_url, "jspbook", "passwd");
+		//Class.forName(jdbc_driver);
+		//conn = DriverManager.getConnection(jdbc_url, "jspbook", "passwd");
+		Context initContext = new InitialContext();
+		Context envContext = (Context)initContext.lookup("java:/comp/env");
+		DataSource ds = (DataSource)envContext.lookup("jdbc/mysql");
+		
+		conn = ds.getConnection();
+		
+	if(request.getParameter("username") != null) {
 		String sql = "insert into jdbc_test values(?,?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, request.getParameter("username"));
 		pstmt.setString(2, request.getParameter("email"));
-	if(request.getParameter("username") != null) {
 		pstmt.executeUpdate();
 	}
 	}
