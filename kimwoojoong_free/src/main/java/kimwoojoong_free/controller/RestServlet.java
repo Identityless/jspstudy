@@ -56,11 +56,9 @@ public class RestServlet extends HttpServlet {
 			try {
 				for(Member vo : voList ) {
 					JSONObject json = new JSONObject();
-					json.put("seq", vo.getSeq());
 					json.put("id", vo.getId()); json.put("passwd", vo.getPasswd()); 
 					json.put("uname", vo.getUname()); json.put("age", vo.getAge()); 
 					json.put("sex", vo.getSex()); json.put("tell", vo.getTell()); 
-					json.put("trainernum", vo.getTrainer()); 
 					arrayJson.put(json);
 				}
 			}
@@ -77,11 +75,9 @@ public class RestServlet extends HttpServlet {
 				}
 				Member vo = service.getMemberInfo(id);
 				JSONObject json = new JSONObject();
-				json.put("seq", vo.getSeq());
 				json.put("id", vo.getId()); json.put("passwd", vo.getPasswd()); 
 				json.put("uname", vo.getUname()); json.put("age", vo.getAge()); 
 				json.put("sex", vo.getSex()); json.put("tell", vo.getTell()); 
-				json.put("trainernum", vo.getTrainer());
 				out.print(json);
 				
 			}catch (JSONException e) {

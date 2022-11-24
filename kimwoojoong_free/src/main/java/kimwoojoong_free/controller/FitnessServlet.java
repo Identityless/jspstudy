@@ -47,14 +47,6 @@ public class FitnessServlet extends HttpServlet {
 					view.forward(request, response);
 				}
 			}
-			if(param.equals("signin")) {
-				RequestDispatcher view = request.getRequestDispatcher("login.jsp");
-				view.forward(request, response);
-			}
-			if(param.equals("mypage")) {
-				RequestDispatcher view = request.getRequestDispatcher("mypage.jsp");
-				view.forward(request, response);
-			}
 		} catch (Exception e) {}
 	}
 
@@ -72,6 +64,9 @@ public class FitnessServlet extends HttpServlet {
 		String pw = "";
 		try {
 			param = request.getParameter("cmd");
+			id = request.getParameter("id");
+			pw = request.getParameter("pw");
+			
 			if(param.equals("join")) {
 				Member member = new Member();
 				
@@ -82,7 +77,6 @@ public class FitnessServlet extends HttpServlet {
 				member.setSex(request.getParameter("sex"));
 				member.setAddress(request.getParameter("address"));
 				member.setTell(request.getParameter("tell"));
-				member.setTrainer(Integer.parseInt(request.getParameter("trainer")));
 				
 				
 				if(service.signUp(member)) message = "가입 축하합니다.";
@@ -104,7 +98,6 @@ public class FitnessServlet extends HttpServlet {
 				member.setSex(request.getParameter("sex"));
 				member.setAddress(request.getParameter("address"));
 				member.setTell(request.getParameter("tell"));
-				member.setTrainer(Integer.parseInt(request.getParameter("trainer")));
 				
 				if(service.updateMember(member)) message = "수정이 완료되었습니다.";
 				else message = "수정 실패입니다.";
@@ -116,8 +109,6 @@ public class FitnessServlet extends HttpServlet {
 				view.forward(request, response);
 			}
 			else if(param.equals("login")) {
-				id = request.getParameter("id");
-				pw = request.getParameter("pw");
 				
 				if(service.login(id, pw)) {
 					request.setAttribute("member", service.getMemberInfo(id));

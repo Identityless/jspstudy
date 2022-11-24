@@ -9,7 +9,6 @@ public class Member {
 	private String sex;
 	private String address;
 	private String tell;
-	private int trainer;
 	public int getSeq() {
 		return seq;
 	}
@@ -34,9 +33,6 @@ public class Member {
 	public String getTell() {
 		return tell;
 	}
-	public int getTrainer() {
-		return trainer;
-	}
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
@@ -60,9 +56,6 @@ public class Member {
 	}
 	public void setTell(String tell) {
 		this.tell = tell;
-	}
-	public void setTrainer(int trainer) {
-		this.trainer = trainer;
 	}
 	
 	

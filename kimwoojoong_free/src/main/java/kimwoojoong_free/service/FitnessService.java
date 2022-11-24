@@ -35,18 +35,6 @@ public class FitnessService {
 		return trainer;
 	}
 	
-	public List<Member> findMemberofTrainer(int seq) {
-		List<Member> allmembers = getAllMembers();
-		List<Member> membersofTrainer = new ArrayList<>();
-		for(Member member : allmembers) {
-			if(member.getTrainer() == seq) {
-				membersofTrainer.add(member);
-			}
-		}
-		
-		return membersofTrainer;
-	}
-	
 	public Member getMemberInfo(String id) {
 		Member member = null;
 		try {

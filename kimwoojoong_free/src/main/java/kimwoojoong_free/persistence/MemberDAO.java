@@ -45,7 +45,7 @@ public class MemberDAO {
 	
 	public boolean add(Member vo) {
 		connect();
-		String sql = "insert into members values(id, passwd, uname, age, sex, address, tell, trainer) (?,?,?,?,?,?,?,?)";
+		String sql = "insert into members values (?,?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -55,7 +55,6 @@ public class MemberDAO {
 			pstmt.setString(5, vo.getSex());
 			pstmt.setString(6, vo.getAddress());
 			pstmt.setString(7, vo.getTell());
-			pstmt.setInt(8, vo.getTrainer());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,7 +74,6 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Member vo = new Member();
-				vo.setSeq(rs.getInt("seq"));
 				vo.setId(rs.getString("id"));
 				vo.setPasswd(rs.getString("passwd"));
 				vo.setUname(rs.getString("uname"));
@@ -83,7 +81,6 @@ public class MemberDAO {
 				vo.setSex(rs.getString("sex"));
 				vo.setAddress(rs.getString("address"));
 				vo.setTell(rs.getString("tell"));
-				vo.setTrainer(rs.getInt("trainer"));
 				memberList.add(vo);
 			}
 			rs.close();
@@ -104,14 +101,13 @@ public class MemberDAO {
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
-			vo.setSeq(rs.getInt("seq"));
 			vo.setId(rs.getString("id"));
 			vo.setPasswd(rs.getString("passwd"));
 			vo.setUname(rs.getString("uname"));
+			vo.setAge(rs.getInt("age"));
 			vo.setSex(rs.getString("sex"));
 			vo.setAddress(rs.getString("address"));
 			vo.setTell(rs.getString("tell"));
-			vo.setTrainer(rs.getInt("trainer"));
 			rs.close();
 		} finally {
 			disconnect();
@@ -121,7 +117,7 @@ public class MemberDAO {
 	
 	public boolean update(Member vo) {
 		connect();
-		String sql = "update members set passwd=?, uname=?, age=?, sex=?, address=?, tell=?, trainer=? where id=?";
+		String sql = "update members set passwd=?, uname=?, age=?, sex=?, address=?, tell=? where id=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getPasswd());
@@ -130,8 +126,7 @@ public class MemberDAO {
 			pstmt.setString(4, vo.getSex());
 			pstmt.setString(5, vo.getAddress());
 			pstmt.setString(6, vo.getTell());
-			pstmt.setInt(7, vo.getTrainer());
-			pstmt.setString(8, vo.getId());
+			pstmt.setString(7, vo.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
