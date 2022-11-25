@@ -9,6 +9,13 @@ public class Member {
 	private String sex;
 	private String address;
 	private String tell;
+	private String tname;
+	public String getTname() {
+		return tname;
+	}
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
 	public int getSeq() {
 		return seq;
 	}

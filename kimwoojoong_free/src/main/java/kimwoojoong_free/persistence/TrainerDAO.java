@@ -85,13 +85,13 @@ public class TrainerDAO {
 		return memberList;
 	}
 	
-	public Trainer read(int seq) {
+	public Trainer read(String name) {
 		connect();
 		Trainer vo = new Trainer();
-		String sql = "select * from trainers where seq=? ";
+		String sql = "select * from trainers where tname=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, seq);
+			pstmt.setString(1, name);
 			ResultSet rs = pstmt.executeQuery();
 			vo.setSeq(rs.getInt("seq"));
 			vo.setTname(rs.getString("tname"));
@@ -107,12 +107,12 @@ public class TrainerDAO {
 	
 	public boolean update(Trainer vo) {
 		connect();
-		String sql = "update trainers set tname=? major=? where seq=?";
+		String sql = "update trainers set seq=? major=? where tname=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getTname());
+			pstmt.setInt(1, vo.getSeq());
 			pstmt.setString(2, vo.getMajor());
-			pstmt.setInt(3, vo.getSeq());
+			pstmt.setString(3, vo.getTname());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

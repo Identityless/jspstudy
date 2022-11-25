@@ -30,8 +30,8 @@ public class FitnessService {
 		return false;
 	}
 	
-	public Trainer findTrainerbySeq(int seq) {
-		Trainer trainer = trainerDAO.read(seq);
+	public Trainer findTrainerbyName(String name) {
+		Trainer trainer = trainerDAO.read(name);
 		return trainer;
 	}
 	
@@ -67,5 +67,8 @@ public class FitnessService {
 	
 	public boolean updateMember(Member member) {
 		return memberDAO.update(member);
+	}
+	public void deleteMember(String id) {
+		memberDAO.delete(id);
 	}
 }

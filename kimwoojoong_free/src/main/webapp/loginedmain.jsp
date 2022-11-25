@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="kimwoojoong_free.domain.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-			Member member = (Member)request.getAttribute("member");
+			Member member = (Member)session.getAttribute("member");
 %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@ body {
 	<nav class="navbar navbar-dark bg-dark fixed-top">
 		<div class="container-fluid">
 			<a class="navbar-brand"
-				href="http://localhost:8080/kimwoojoong_free/FitnessServlet?login=ture">INTHERAIN FITNESS</a>
+				href="http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=main&login=true">INTHERAIN FITNESS</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
 				aria-controls="offcanvasDarkNavbar">
@@ -39,9 +39,9 @@ body {
 				</div>
 				<div class="offcanvas-body">
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-						<li class="nav-item"><a class="nav-link" href="http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=main&login=true">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Trainers</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Members</a></li>
+						<li class="nav-item"><a class="nav-link" href="http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=main&cmd=main&login=true">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=trainers">Trainers</a></li>
+						<li class="nav-item"><a class="nav-link" href="http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=mypage">Mypage</a></li>
 						<li class="nav-item"><a class="nav-link" href="http://localhost:8080/kimwoojoong_free/">Logout</a>
 						</li>
 					</ul>

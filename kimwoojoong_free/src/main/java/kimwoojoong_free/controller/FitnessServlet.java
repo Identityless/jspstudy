@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kimwoojoong_free.domain.Member;
 import kimwoojoong_free.service.FitnessService;
@@ -18,6 +19,7 @@ import kimwoojoong_free.service.FitnessService;
 public class FitnessServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FitnessService service = new FitnessService();
+	private HttpSession session;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,6 +36,7 @@ public class FitnessServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String param = "";
 		String login = "";
+		session = request.getSession();
 		try {
 			param = request.getParameter("cmd");
 			login = request.getParameter("login");
@@ -47,6 +50,31 @@ public class FitnessServlet extends HttpServlet {
 					view.forward(request, response);
 				}
 			}
+			if(param.equals("trainers")) {
+				session.setAttribute("trainers", service.getAllTrainers());
+				RequestDispatcher view = request.getRequestDispatcher("trainers.jsp");
+				view.forward(request, response);
+			}
+			if(param.equals("register")) {
+				session.setAttribute("trainers", service.getAllTrainers());
+				RequestDispatcher view = request.getRequestDispatcher("register.jsp");
+				view.forward(request, response);
+			}
+			if(param.equals("mypage")) {
+				RequestDispatcher view = request.getRequestDispatcher("mypage.jsp");
+				view.forward(request, response);
+			}
+			if(param.equals("update")) {
+				session.setAttribute("trainers", service.getAllTrainers());
+				RequestDispatcher view = request.getRequestDispatcher("update.jsp");
+				view.forward(request, response);
+			}
+			if(param.equals("delete")) {
+				Member member = (Member)session.getAttribute("member");
+				service.deleteMember(member.getId());
+				RequestDispatcher view = request.getRequestDispatcher("mainpage.html");
+				view.forward(request, response);
+			}
 		} catch (Exception e) {}
 	}
 
@@ -57,9 +85,9 @@ public class FitnessServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		session = request.getSession();
 		
 		String param = "";
-		String message = "";
 		String id = "";
 		String pw = "";
 		try {
@@ -77,13 +105,11 @@ public class FitnessServlet extends HttpServlet {
 				member.setSex(request.getParameter("sex"));
 				member.setAddress(request.getParameter("address"));
 				member.setTell(request.getParameter("tell"));
+				member.setTname(request.getParameter("trainer"));
 				
+				service.signUp(member);
 				
-				if(service.signUp(member)) message = "가입 축하합니다.";
-				else message = "가입 실패입니다.";
-				
-				request.setAttribute("greetings", message);
-				request.setAttribute("member", member);
+				session.setAttribute("member", member);
 				
 				RequestDispatcher view = request.getRequestDispatcher("loginedmain.jsp");
 				view.forward(request, response);
@@ -98,20 +124,19 @@ public class FitnessServlet extends HttpServlet {
 				member.setSex(request.getParameter("sex"));
 				member.setAddress(request.getParameter("address"));
 				member.setTell(request.getParameter("tell"));
+				member.setTname(request.getParameter("trainer"));
 				
-				if(service.updateMember(member)) message = "수정이 완료되었습니다.";
-				else message = "수정 실패입니다.";
+				service.updateMember(member);
 				
-				request.setAttribute("greetings", message);
-				request.setAttribute("member", member);
+				request.setAttribute("member", service.getMemberInfo(request.getParameter("id")));
 				
-				RequestDispatcher view = request.getRequestDispatcher("result.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("mainpage.html");
 				view.forward(request, response);
 			}
 			else if(param.equals("login")) {
 				
 				if(service.login(id, pw)) {
-					request.setAttribute("member", service.getMemberInfo(id));
+					session.setAttribute("member", service.getMemberInfo(id));
 					RequestDispatcher view = request.getRequestDispatcher("loginedmain.jsp");
 					view.forward(request, response);
 				}
