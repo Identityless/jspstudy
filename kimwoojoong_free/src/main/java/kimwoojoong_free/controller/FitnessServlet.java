@@ -36,10 +36,12 @@ public class FitnessServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String param = "";
 		String login = "";
+		String id="";
 		session = request.getSession();
 		try {
 			param = request.getParameter("cmd");
 			login = request.getParameter("login");
+			id = request.getParameter("id");
 			if(param.equals("main")) {
 				if(login.equals("true")) {
 					RequestDispatcher view = request.getRequestDispatcher("loginedmain.jsp");
@@ -70,8 +72,7 @@ public class FitnessServlet extends HttpServlet {
 				view.forward(request, response);
 			}
 			if(param.equals("delete")) {
-				Member member = (Member)session.getAttribute("member");
-				service.deleteMember(member.getId());
+				service.deleteMember(id);
 				RequestDispatcher view = request.getRequestDispatcher("mainpage.html");
 				view.forward(request, response);
 			}

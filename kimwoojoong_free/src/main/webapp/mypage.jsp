@@ -77,7 +77,7 @@
 	
 	<div class="container">
 		<button type="button" class="btn btn-primary" onClick="location.href='http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=update'">정보 수정</button>
-		<button type="button" class="btn btn-danger" onClick="location.href='http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=delete'">회원 탈퇴</button>
+		<button type="button" class="btn btn-danger" onClick="location.href='http://localhost:8080/kimwoojoong_free/FitnessServlet?cmd=delete&id=${member.getId()}'">회원 탈퇴</button>
 	</div>
 
 
