@@ -13,8 +13,6 @@
 </head>
 <body class="text-center">
 
-<jsp:useBean id="trainer" class="kimwoojoong_free.domain.Trainer" scope="session"/>
-
 	<br>
 	<br>
 	<br>
@@ -67,7 +65,7 @@
 				<c:forEach items="${trainers}" var="trainer">
 					<option>${trainer.getTname() }</option>
 				</c:forEach>
-				
+
 			</select> </fildset>
 			<fildset> <input class="w-100 btn btn-lg btn-primary"
 				type="submit" id="submit" value="Sign Up"> <input
