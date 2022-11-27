@@ -58,12 +58,12 @@ public class FitnessServlet extends HttpServlet {
 				view.forward(request, response);
 			}
 			if(param.equals("register")) {
-				session.setAttribute("trainers", service.getAllTrainers());
+				session.setAttribute("trainers", service.getAllTrainers());	// 세션에 트레이너 리스트 바인딩
 				RequestDispatcher view = request.getRequestDispatcher("register.jsp");
 				view.forward(request, response);
 			}
 			if(param.equals("mypage")) {
-				RequestDispatcher view = request.getRequestDispatcher("mypage.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("mypage.jsp"); 
 				view.forward(request, response);
 			}
 			if(param.equals("update")) {
