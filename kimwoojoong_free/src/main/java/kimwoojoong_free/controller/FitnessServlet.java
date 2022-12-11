@@ -67,7 +67,7 @@ public class FitnessServlet extends HttpServlet {
 				view.forward(request, response);
 			}
 			if(param.equals("update")) {
-				session.setAttribute("trainers", service.getAllTrainers());
+				session.setAttribute("trainers", service.getAllTrainers());	// 트레이너 정보가 필요하기에 모든 트레이너 정보를 세션에 바인딩. 추후에 수정 필요
 				RequestDispatcher view = request.getRequestDispatcher("update.jsp");
 				view.forward(request, response);
 			}
