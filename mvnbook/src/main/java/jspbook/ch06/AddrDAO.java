@@ -6,8 +6,8 @@ public class AddrDAO {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	String jdbc_driver = "com.mysql.cj.jdbc.Driver";
-	String jdbc_url = "jdbc:mysql://localhost:3307/jspdb?allowPublicKeyRetrieval=true"
-			+ "&useUnicode=true&characterEncoding=utf8&"
+	String jdbc_url = "jdbc:mysql://localhost:3307/jspdb?allowPublicKeyRetrieval=true" // 본인 로컬에서 mysql은 3307이라서 포트번호가 저럼. 다른 컴퓨터에서 돌릴 때
+			+ "&useUnicode=true&characterEncoding=utf8&"				// 수정해야함.
 			+ "useSSL=false&serverTimezone=UTC";
 	
 	void connect() {
