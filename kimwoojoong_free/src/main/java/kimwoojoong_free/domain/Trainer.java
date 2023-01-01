@@ -1,6 +1,6 @@
 package kimwoojoong_free.domain;
 
-public class Trainer {
+public class Trainer {	// 트레이너 VO 객체
 	private int seq;
 	private String tname;
 	private String major;
